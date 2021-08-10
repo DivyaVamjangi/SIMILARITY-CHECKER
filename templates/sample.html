@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <title>Spam SMS Detector</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles1.css') }}">
+    </head>
+
+    <body>
+    <!-- Website Title -->
+
+        <div class="container">
+            <h2 class='container-heading'><span>Similarity</span> </h2>
+            <div class='description'>
+                <p>A Machine Learning Web App, Built with Flask.</p>
+            </div>
+        </div>
+
+
+        <!-- Text Area -->
+        <form action="{{ url_for('predict') }}" method="POST">
+        <div class="flex-container">
+            <div class="box">
+                
+                <textarea class='message-box' name="message1" rows="25" cols="85" placeholder="Enter Text1"></textarea><br/>
+            </div>
+            <div class="box1">
+                    <textarea class='message-box' name="message2" rows="25" cols="85" placeholder="Enter Text2"></textarea><br/>
+            </div>    
+        </div>
+        <input type="submit" class="my-cta-button" value="Check">
+        </form>
+
+
+        <div class="results">
+            {% if cosine_score %}
+                <h1>Similarity Score: <span class='danger'>{{cosine_score}}</span></h1>
+            {% endif %}
+        </div>
+
+    </body>
+    </html>
